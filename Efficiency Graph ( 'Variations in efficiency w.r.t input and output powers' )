@@ -1,0 +1,43 @@
+clc
+clear all
+m = 30:10:100;
+t = 0.3:0.1:1;
+V = 12:3:33;
+I = 0.15:0.05:0.5;   
+[m t] = meshgrid(m,t);
+[V I] = meshgrid(V,I);
+b=2.834
+a=7
+rp = 0.057
+rs = 0.088
+mp = 0.5
+ms = 0.13
+ml = 1.017
+rl = 0.18
+mfl = 9.5
+rfl = 0.29
+mg = 6.5
+rg = 0.225
+msg = 0.5
+rsg = 0.04
+Jp = mp*(rp.^2)
+Js = ms*(rs.^2)
+Jl = ml*(rl.^2)
+Jfl = mfl*(rfl.^2)
+Jg = mg*(rg.^2)
+Jsg = msg*(rsg.^2)
+f = m*9.81
+F= f- 4*a*b
+Tp = rp*F
+Tf = (Tp*(44/20)*(17/106)*(Jp + Js + Jl + Jfl + Jg + Jsg))
+ 
+PM = Tf./t;
+PE = V.*I;
+E = (PE./PM)*100;
+figure
+mesh(PM,PE,E)
+title('Variations in efficiency w.r.t input and output powers')
+xlabel('PM') % x-axis label
+ylabel('PE') % y-axis label
+zlabel('Efficiency') % z-axis label
+grid on
