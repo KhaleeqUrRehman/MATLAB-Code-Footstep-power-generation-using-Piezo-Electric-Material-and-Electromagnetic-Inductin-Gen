@@ -1,0 +1,35 @@
+clc
+clear all
+m = 30:10:100;
+t = 0.8
+k =7
+x=2.834
+rp = 0.057
+rs = 0.088
+mp = 0.5
+ms = 0.13
+ml = 1.017
+rl = 0.18
+mfl = 9.5
+rfl = 0.29
+mg = 6.5
+rg = 0.225
+msg = 0.5
+rsg = 0.04
+Jp = mp*(rp.^2)
+Js = ms*(rs.^2)
+Jl = ml*(rl.^2)
+Jfl = mfl*(rfl.^2)
+Jg = mg*(rg.^2)
+Jsg = msg*(rsg.^2)
+f = m*9.81
+F=f-4*k*x
+Tp = rp*F
+Tf = (Tp*(44/20)*(17/106)*(Jp + Js + Jl + Jfl + Jg + Jsg))
+PM = Tf/t
+ 
+plot(m,PM)
+title('Graph of Mechanical Power and Mass')
+xlabel('Mass (kg)') % x-axis label
+ylabel('Mechanical Power (W)') % y-axis label
+grid on
